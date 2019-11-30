@@ -1,7 +1,7 @@
-import React from 'react';
-import orderBy from 'lodash/orderBy';
-import TaskListItem from './TaskListItem';
-import { tasksRef } from './reference';
+import React from "react";
+import orderBy from "lodash/orderBy";
+import TaskListItem from "./TaskListItem";
+import { tasksRef } from "./reference";
 
 export default class TaskList extends React.Component {
   state = {
@@ -10,10 +10,10 @@ export default class TaskList extends React.Component {
   };
 
   componentDidMount() {
-    tasksRef.on('value', snap => {
+    tasksRef.onSnapshot(snap => {
       const tasks = [];
       snap.forEach(shot => {
-        tasks.push({ ...shot.val(), key: shot.key });
+        tasks.push({ ...shot.data(), key: shot.id });
       });
       this.setState({ tasks, tasksLoading: false });
     });
@@ -23,8 +23,8 @@ export default class TaskList extends React.Component {
     const { tasks, tasksLoading } = this.state;
     const orderedTasks = orderBy(
       tasks,
-      ['checked', 'starred'],
-      ['asc', 'desc']
+      ["checked", "starred"],
+      ["asc", "desc"]
     );
 
     let taskList;

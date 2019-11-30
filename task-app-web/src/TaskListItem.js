@@ -1,20 +1,20 @@
-import React from 'react';
-import { tasksRef } from './reference';
+import React from "react";
+import { tasksRef } from "./reference";
 
 export default class TaskListItem extends React.Component {
   toggleChecked = () => {
     const { key, checked } = this.props.task;
-    tasksRef.child(key).update({ checked: !checked });
+    tasksRef.doc(key).update({ checked: !checked });
   };
 
   toggleStarred = () => {
     const { key, starred } = this.props.task;
-    tasksRef.child(key).update({ starred: !starred });
+    tasksRef.doc(key).update({ starred: !starred });
   };
 
   deleteTask = () => {
     const { key } = this.props.task;
-    tasksRef.child(key).remove();
+    tasksRef.doc(key).delete();
   };
 
   render() {
@@ -45,11 +45,11 @@ export default class TaskListItem extends React.Component {
       <li className="TaskListItem">
         <button onClick={this.toggleChecked}>
           <i className="material-icons icon-grey">
-            {task.checked ? 'check_box' : 'check_box_outline_blank'}
+            {task.checked ? "check_box" : "check_box_outline_blank"}
           </i>
         </button>
 
-        <span className={task.checked ? 'TaskListItem-checked' : ''}>
+        <span className={task.checked ? "TaskListItem-checked" : ""}>
           {task.text}
         </span>
 

@@ -1,11 +1,23 @@
-import * as firebase from 'firebase';
-
-const config = {
-  apiKey: 'AIzaSyBstL_t0GIeKI6voWzCWOd3HcGCNJdahXA',
-  databaseURL: 'https://react-firebase-crud.firebaseio.com'
+import firebase from "@firebase/app";
+import "@firebase/firestore";
+/*
+authDomain: "pizzaadev.firebaseapp.com",
+projectId: "pizzaadev",
+storageBucket: "pizzaadev.appspot.com",
+messagingSenderId: "831810510712",
+appId: "1:831810510712:web:ef674b79330674d494f28d"
+*/
+var firebaseConfig = {
+  apiKey: "AIzaSyBRsD3U9YvuDk3cSBYozjMntaM3_tOAi1s",
+  authDomain: "pizzaadev.firebaseapp.com",
+  databaseURL: "https://pizzaadev.firebaseio.com",
+  projectId: "pizzaadev",
+  storageBucket: "pizzaadev.appspot.com",
+  messagingSenderId: "831810510712",
+  appId: "1:831810510712:web:ef674b79330674d494f28d"
 };
-firebase.initializeApp(config);
 
-const rootRef = firebase.database().ref();
-export const tasksRef = rootRef.child('tasks');
-export const timeRef = firebase.database.ServerValue.TIMESTAMP;
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+export const tasksRef = db.collection("tasks");

@@ -1,20 +1,19 @@
-import React from 'react';
-import { tasksRef, timeRef } from './reference';
+import React from "react";
+import { tasksRef } from "./reference";
 
 export default class TaskInput extends React.Component {
-  state = { text: '' };
+  state = { text: "" };
 
   handleSubmit = event => {
     event.preventDefault();
     const newTask = {
       text: this.state.text.trim(),
       checked: false,
-      starred: false,
-      timestamp: timeRef
+      starred: false
     };
     if (newTask.text.length) {
-      tasksRef.push(newTask);
-      this.setState({ text: '' });
+      tasksRef.add(newTask);
+      this.setState({ text: "" });
     }
   };
 
